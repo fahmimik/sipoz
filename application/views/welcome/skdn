@@ -1,0 +1,55 @@
+<div class="panel-heading"> <h5>GRAFIK SKDN</h5></div>
+<canvas id="myChart"></canvas>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ["S", "K", "D", "N"],
+datasets: [{
+label: '',
+data: [
+<?php
+$jumlah_teknik =$this->db->query("select * from detail_data_statistik where fakultas='teknik'");
+//echo mysqli_num_rows($jumlah_teknik);
+echo $jumlah_teknik->num_rows();
+?>,
+<?php
+$jumlah_ekonomi = $this->db->query("select * from detail_data_statistik where fakultas='ekonomi'");
+echo $jumlah_ekonomi->num_rows();
+?>,
+<?php
+$jumlah_fisip = $this->db->query("select * from detail_data_statistik where fakultas='fisip'");
+echo $jumlah_fisip->num_rows();
+?>,
+<?php
+$jumlah_pertanian = $this->db->query("select * from detail_data_statistik where fakultas='pertanian'");
+echo $jumlah_pertanian->num_rows();
+?>
+],
+backgroundColor: [
+'rgba(255, 99, 132, 0.2)',
+'rgba(54, 162, 235, 0.2)',
+'rgba(255, 206, 86, 0.2)',
+'rgba(75, 192, 192, 0.2)'
+],
+borderColor: [
+'rgba(255,99,132,1)',
+'rgba(54, 162, 235, 1)',
+'rgba(255, 206, 86, 1)',
+'rgba(75, 192, 192, 1)'
+],
+borderWidth: 1
+}]
+},
+options: {
+scales: {
+yAxes: [{
+  ticks: {
+    beginAtZero:true
+  }
+}]
+}
+}
+});
+</script>
